@@ -1,0 +1,382 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+[colors]
+ rosewater = #f5e0dc
+ flamingo = #f2cdcd
+ pink = #f5c2e7
+ mauve = #cba6f7
+ red = #f38ba8
+ maroon = #eba0ac
+ peach = #fab387
+ yellow = #f9e2af
+ green = #40a02b
+ teal = #179299
+ sky = #89dceb
+ sapphire = #74c7ec
+ blue = #89b4fa
+ lavender = #b4befe
+ text = #cdd6f4
+ subtext1 = #bac2de
+ subtext0 = #a6adc8
+ overlay2 = #9399b2
+ overlay1 = #7f849c
+ overlay0 = #6c7086
+ surface2 = #585b70
+ surface1 = #45475a
+ surface0 = #313244
+ base = #1e1e2e
+ mantle = #181825
+ crust = #11111b
+ transparent = #FF00000
+[bar/bar]
+monitor = ${env:MONITOR:}
+width = 100% 
+height = 36
+; dpi = 96
+
+background = ${colors.base}
+foreground = ${colors.foreground}
+
+line-size = 2pt
+
+border-size = 4pt
+border-color = #00000000
+
+padding-left = 2
+padding-right = 2
+
+module-margin = 0
+
+separator = |
+separator-foreground = ${colors.text}
+
+font-0 = FiraCode Nerd Font;3
+
+modules-left = xwindow i3 
+modules-center = date 
+modules-right = pulseaudio xkeyboard memory cpu network battery
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+enable-ipc = true
+
+; wm-restack = generic
+; wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+; This module is not active by default (to enable it, add it to one of the
+; modules-* list above).
+; Please note that only a single tray can exist at any time. If you launch
+; multiple bars with this module, only a single one will show it, the others
+; will produce a warning. Which bar gets the module is timing dependent and can
+; be quite random.
+; For more information, see the documentation page for this module:
+; https://polybar.readthedocs.io/en/stable/user/modules/tray.html
+[module/systray]
+type = internal/tray
+
+format-margin = 8pt
+tray-spacing = 16pt
+
+[module/i3]
+type = internal/i3
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+; Show urgent workspaces regardless of whether the workspace is actually hidden 
+; by pin-workspaces.
+;
+; Default: false
+; New in version 3.6.0
+show-urgent = true
+
+; This will split the workspace name on ':'
+; Default: false
+;strip-wsnumbers = false
+
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+; Default: false
+index-sort = true
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = true
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = false
+
+; Wrap around when reaching the first/last workspace
+; Default: true
+wrapping-scroll = false
+
+; Set the scroll cycle direction 
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching for wc-icon.
+; Example: code;♚ will apply the icon to all workspaces 
+; containing 'code' in the name
+; Changed in version 3.7.0: Selects longest string match instead of the first match.
+; Default: false
+fuzzy-match = true
+
+; ws-icon-[0-9]+ = <label>;<icon>
+; NOTE: The <label> needs to match the name of the i3 workspace
+; Neither <label> nor <icon> can contain a semicolon (;)
+
+ws-icon-0 = 1;%{F#8839ef} 1:Chrome Main
+ws-icon-1 = 2;%{F#ffa700} 2:Chrome S
+ws-icon-2 = 3;%{F#1DB954} 3:Spotify
+ws-icon-3 = 4;%{F#0078d7} 4:VSCode
+ws-icon-4 = 5;%{F#eb092b} 5:Zotero
+ws-icon-5 = 6; 6:GIMP
+ws-icon-6 = 7;%{F#0f55fa}󰫪 7:Zoom
+ws-icon-7 = 8;%{F#cba6f7} 8:Zed
+ws-icon-default = %{F#eb6009}9:
+; NOTE: You cannot skip icons, e.g. to get a ws-icon-6
+; you must also define a ws-icon-5.
+; NOTE: Icon will be available as the %icon% token inside label-*
+
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+
+; Available tokens:
+;   %mode%
+; Default: %mode%
+label-mode = %mode%
+label-mode-padding = 1
+label-mode-background = #e60053
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon% %name%
+label-focused = %icon%
+label-focused-foreground = #ffffff
+label-focused-background = ${colors.transparent}
+label-focused-underline = ${colors.flamingo}
+label-focused-padding = 1
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon% %name%
+label-unfocused = %icon%
+label-unfocused-padding = 1
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon% %name%
+label-visible = %icon%
+label-visible-underline = ${colors.overlay1}
+label-visible-padding = 1
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon% %name%
+label-urgent = %icon%
+label-urgent-foreground = #000000
+label-urgent-background = ${colors.surface0}
+label-urgent-padding = 1
+
+; Separator in between workspaces
+label-separator = |
+label-separator-padding = 0
+label-separator-foreground = ${colors.text}
+
+[module/xwindow]
+type = internal/xwindow
+label = %title%
+format-padding = 1
+format-foreground = ${colors.text1}
+format-background = #8839ef
+label-maxlen = 50
+
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = %{F#F0C674}%mountpoint%%{F-} %percentage_used%%
+
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.disabled}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume-prefix = " "
+format-volume-prefix-foreground = ${colors.yellow}
+format-volume = <label-volume>
+
+label-volume = %percentage%%
+label-volume-foreground = ${colors.yellow}
+
+label-muted = muted
+label-muted-foreground = ${colors.disabled}
+
+[module/xkeyboard]
+type = internal/xkeyboard
+format-prefix = "󰌌 "
+format-prefix-foreground = ${colors.teal}
+
+label-layout = %layout%
+label-layout-foreground = ${colors.teal}
+
+label-indicator-padding = 1
+label-indicator-margin = 0
+label-indicator-foreground = ${colors.text1}
+label-indicator-background = ${colors.teal}
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "  "
+format-prefix-foreground = ${colors.green}
+label = %percentage_used:2%%
+label-foreground = ${colors.green}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.blue}
+label = %percentage:2%%
+label-foreground = ${colors.blue}
+
+[module/network]
+type = internal/network
+interface = wlp0s20f3
+interface-type = wireless
+interval = 3.0
+accumulate-stats = true
+unknown-as-up = true
+speed-unit = B/s
+
+format-connected = <label-connected>
+format-connected-prefix = "󰤨  "
+format-connected-foreground = ${colors.mauve}
+
+format-disconnected = <label-disconnected>
+format-disconnected-prefix = "󰤮  "
+format-disconnected-foreground = ${colors.red}
+
+label-connected = %essid%
+
+label-disconnected = "Offline"
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = %d-%m-%Y %H:%M:%S
+
+label = %date%
+label-foreground = ${colors.pink}
+
+[module/battery]
+type = internal/battery
+format-full-foreground = ${colors.sky}
+format-discharging-foreground = ${colors.peach}
+format-charging-foreground = ${colors.sapphire}
+
+; This is useful in case the battery never reports 100% charge
+full-at = 99
+low-at = 10
+
+; Use the following command to list batteries and adapters:
+; $ ls -1 /sys/class/power_supply/
+battery = BAT1
+adapter = ACAD
+
+time-format = %H:%M
+format-charging = 󰂄 <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = 󱟢 <label-full>
+
+
+label-charging = %percentage%%
+label-discharging = %percentage%%
+
+label-full = %percentage%%
+label-low = BATTERY LOW
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+; Only applies if <bar-capacity> is used
+bar-capacity-width = 10
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+; Only applies if <animation-discharging> is used
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+; Framerate in milliseconds
+animation-discharging-framerate = 500
+
+; Only applies if <animation-low> is used
+; New in version 3.6.0
+animation-low-0 = !
+animation-low-1 = 
+animation-low-framerate = 200
+
+[settings]
+screenchange-reload = true
+pseudo-transparency = true
+
+; vim:ft=dosini

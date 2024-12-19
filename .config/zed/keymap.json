@@ -1,0 +1,51 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+      "ctrl-r t": "terminal_panel::ToggleFocus",
+      "ctrl-r e": "project_panel::ToggleFocus",
+      "ctrl-s": ["workspace::SendKeystrokes", "ctrl-shift-p save enter escape"],
+      "ctrl-k k": [
+        "workspace::SendKeystrokes",
+        "ctrl-k p ctrl-r t ctrl-c quarto space preview space ctrl-shift-v enter"
+      ]
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      // "j k": ["workspace::SendKeystrokes", "escape"]
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "space w": "vim::NextSubwordStart",
+      "space b": "vim::PreviousSubwordStart",
+      "space e": "vim::NextSubwordEnd",
+      "space g e": "vim::PreviousSubwordEnd"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+      "ctrl-r t": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+      "ctrl-r e": "workspace::ToggleRightDock"
+    }
+  }
+]

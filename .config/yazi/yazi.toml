@@ -1,0 +1,14 @@
+[manager]
+ratio          = [ 1, 3, 4 ]
+
+[opener]
+edit = [
+	{ run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+	{ run = 'code "$@"', desc = "VSCode", orphan = true, for = "unix" },
+	{ run = "%EDITOR% %*",  block = true, for = "windows" },
+]
+open = [
+	{ run = 'xdg-open "$1"', desc = "Open", block=true,for = "linux" },
+	{ run = 'nautilus .', desc = "Open Containing Folder", for = "linux" },
+
+]

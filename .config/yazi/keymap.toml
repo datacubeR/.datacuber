@@ -1,0 +1,5 @@
+[[manager.prepend_keymap]]
+on  = "y"
+run = [ '''
+	shell --confirm 'echo "$@" | xclip -i -selection clipboard -t text/uri-list'
+''', "yank" ]

@@ -1,0 +1,27 @@
+{
+  "Print": {
+    "prefix": "print",
+    "body": ["print($1);", "$0"],
+    "description": "Print"
+  },
+  "Cell": {
+    "prefix": "cell",
+    "body": ["# %% $1", "$0"],
+    "description": "New Cell in REPL"
+  },
+  "Shape": {
+    "prefix": "pshape",
+    "body": ["print($1.shape)", "$0"],
+    "description": "Print Shape of element"
+  },
+  "Log error to console": {
+    "prefix": "error",
+    "body": ["console.error($1);", "$0"],
+    "description": "Log error to the console"
+  },
+  "Throw Exception": {
+    "prefix": "throw",
+    "body": ["throw new Error(\"$1\");", "$0"],
+    "description": "Throw Exception"
+  }
+}
