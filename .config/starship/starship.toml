@@ -1,83 +1,117 @@
-format="""
+format = """
+[╭](fg:current_line)\
 $os\
 $username\
 $directory\
 $git_branch\
-$git_commit\
 $git_status\
 $git_state\
 $fill\
 $python\
 $conda\
+$cmd_duration\
 $line_break\
 $character\
 """
 
-[character]
-success_symbol = '[➜](bold green) '
-error_symbol = '[✗](bold red) '
+palette = 'dracula'
+add_newline = true
 
-[username]
-show_always = true
-
-[conda]
-format = '[$symbol$environment](dimmed green) '
-ignore_base = false
-
-[python]
-symbol = " "
-format = ' [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-
-[git_commit]
-only_detached = true
-format = '[ $hash$tag]($style) '
-tag_disabled = false
-
+[palettes.dracula]
+foreground = '#F8F8F2'
+background = '#282A36'
+current_line = '#44475A'
+primary = '#1E1F29'
+box = '#44475A'
+grey = '#6272A4'
+blue = '#1e66f5'
+cyan = '#8BE9FD'
+green = '#50FA7B'
+orange = '#FFB86C'
+mauve = '#8839ef'
+pink = '#FF79C6'
+purple = '#BD93F9'
+teal = '#179299'
+red = '#FF5555'
+yellow = '#df8e1d'
 
 [os]
+format = '(fg:current_line)[](fg:red)[$symbol ](fg:primary bg:red)[](fg:red)'
 disabled = false
 
 [os.symbols]
-Alpaquita = " "
-Alpine = " "
-AlmaLinux = " "
-Amazon = " "
-Android = " "
-Arch = " "
-Artix = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Kali = " "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-RockyLinux = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Void = " "
-Windows = "󰍲 "
+Alpine = ''
+Amazon = ''
+Android = ''
+Arch = ''
+CentOS = ''
+Debian = ''
+EndeavourOS = ''
+Fedora = ''
+FreeBSD = ''
+Garuda = ''
+Gentoo = ''
+Linux = ''
+Macos = ''
+Manjaro = ''
+Mariner = ''
+Mint = ''
+NetBSD = ''
+NixOS = ''
+OpenBSD = ''
+OpenCloudOS = ''
+openEuler = ''
+openSUSE = ''
+OracleLinux = '⊂⊃'
+Pop = ''
+Raspbian = ''
+Redhat = ''
+RedHatEnterprise = ''
+Solus = ''
+SUSE = ''
+Ubuntu = ''
+Unknown = ''
+Windows = ''
+
+[directory]
+format = '[─](fg:current_line)[](fg:pink)[󰷏 ](fg:primary bg:pink)[](fg:pink bg:box)[ $read_only$path](fg:foreground bg:box)[](fg:box)'
+home_symbol = " ~"
+truncation_length = 4
+read_only = '󱧵 '
+read_only_style = ''
+truncate_to_repo = false
+
+[git_branch]
+format = '[─](fg:current_line)[](fg:green)[$symbol](fg:primary bg:green)[](fg:green bg:box)[ $branch](fg:foreground bg:box)'
+symbol = ' '
+
+[git_status]
+format = '[( $all_status)](fg:red bg:box)[](fg:box)'
+
+[fill]
+symbol = '─'
+style = 'fg:current_line'
+
+[cmd_duration]
+min_time = 500
+format = '[─](fg:current_line)[](fg:purple)[ ](fg:primary bg:purple)[](fg:purple bg:box)[ $duration ](fg:foreground bg:box)[](fg:box)'
+
+[username]
+format = '[─](fg:current_line)[](fg:yellow)[ ](fg:primary bg:yellow)[](fg:yellow bg:box)[ $user](fg:foreground bg:box)[](fg:box)'
+show_always = true
+
+[conda]
+format = '[─](fg:current_line)[](fg:teal)[$symbol](fg:primary bg:teal)[](fg:teal bg:box)[ $environment](fg:foreground bg:box)[](fg:box)'
+ignore_base = false
+symbol = ' '
+
+[python]
+symbol = " "
+format = '[─](fg:current_line)[](fg:blue)[ $symbol ](fg:primary bg:blue)[](fg:blue bg:box)[ ${pyenv_prefix}(${version} )(\($virtualenv\) )](fg:foreground bg:box)[](fg:box)'
+
+[character]
+format = """
+[│](fg:current_line)
+[╰─$symbol](fg:current_line) """
+success_symbol = '[](fg:bold green)'
+error_symbol = '[](fg:bold red)'
