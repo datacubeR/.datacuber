@@ -43,7 +43,7 @@ sudo pacman -S stow
 After this I should clone this repo using: 
 
 ```bash
-git clone xxxx
+git clone git@github.com:datacubeR/.datacuber.git
 ```
 Once the repo is cloned is just a matter of stowing my configurations with the following command:
 
@@ -53,19 +53,99 @@ stow .
 ```
 This should restore my configurations to the correct location using symlinks.
 
-## Installations 
+## System Installations 
 
 Despite I have spent enough time configuring my system, it is still likely that some dependencies are gonna need to be installed. This is a list of the software that I use and that I need to install:
 
 - `zsh`
-    - Plugins:
-    - `oh-my-zsh`
+- Plugins:
+    - `oh-my-zsh` (not sure if it is needed)
     - `zsh-autosuggestions`
     - `zsh-syntax-highlighting`
 - `starship`
 - `polybar`
 - `rofi`
+- Plugins
+    - ![`rofi-themes-collection`](https://github.com/newmanls/rofi-themes-collection)
+    - ![`rofi-bluetooth`](https://github.com/nickclyde/rofi-bluetooth)
+    - ![`rofi-power-menu`](https://github.com/jluttine/rofi-power-menu)
+    - ![`rofi-wifi-menu`](https://github.com/ericmurphyxyz/rofi-wifi-menu)
 - `wezterm`
-- `rofi-bluetooth`
-- `rofi-power-menu`
-- `rofi-wifi`
+- `yazi`
+- `Fira Code Nerd Font`: As my Font and Icons for system and Terminal.
+
+Additionally I depend on specific Linux System Applications such as: 
+
+- `lxappearance`: For theme and icon configuration.
+- `pactl`: For audio control.
+- `playerctl`: For media control.
+- `bluetoothctl`: For bluetooth control.
+- `brightnessctl`: For brightness control.
+- `feh`: For setting wallpapers.
+- `picom`: For transparency and shadows (not ever installed in Debian Systems)
+- `xrandr`: For screen configuration.
+- `scrot`: For screenshots.
+
+
+Other applications that I can potentially use: `xbacklight`, `dunst`. 
+
+## Applications
+
+Some of the Applications that I need to install because are part of my daily use are:
+
+* `miniconda`: Super important for my Python Enviroments. 
+* `Google Chrome`
+* `GIMP`
+* `git`
+* `quarto`
+* `Spotify`
+* `VSCode`
+* `Zathura`
+* `Zed`
+* `Zoom`
+* `Zotero`
+
+
+## Special Configs
+
+Some configs need to be done manually and it may change depending on the OS I'm using. Some of them are the following:
+
+### Google Chrome
+To get access to my keyring autofill and password manager I need to modify my `google-chrome.desktop` file modifying the `Exec` line to look like this:
+
+```bash
+Exec=/usr/bin/google-chrome-stable --password-store=gnome-libsecret
+```
+
+> Important: 
+> This may change for other OS, other options that could eventually work are `--password-store=basic` or `--password-store=gnome`.
+
+### Shell Scripts
+
+All the Shell Scripts I need to run needs to have execution permissions. To give them execution permissions I need to run the following command:
+
+```bash
+chmod +x <script_name>
+```
+
+## Useful commands that I don't want to forget.
+
+> Can't remember why I used it
+```bash
+usermod -aG video ${USER}
+```
+
+> Useful to find google-chrome.desktop file. 
+```bash
+sudo nano /usr/share/applications/google-chrome.desktop
+``` 
+
+> Useful to set Zathura as default PDF viewer
+```bash
+xdg-mime default org.pwmt.zathura.desktop application/pdf
+```
+
+> Useful to find the class of a window needed for i3 configuration
+```bash
+xprop | grep WM_CLASS
+```
