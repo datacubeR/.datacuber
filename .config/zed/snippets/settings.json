@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "icon_theme": "Material Icon Theme",
   "terminal": {
     "dock": "bottom",
     "font_family": "FiraCode Nerd Font",
@@ -70,7 +71,7 @@
   "show_signature_help_after_edits": true,
   "languages": {
     "Python": {
-      "show_inline_completions": true,
+      "show_edit_predictions": true,
       "language_servers": ["pyright", "ruff"],
       "format_on_save": "on",
       "formatter": [
@@ -140,6 +141,6 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Catppuccin Mocha - No Italics"
+    "dark": "Catppuccin Macchiato - No Italics"
   }
 }

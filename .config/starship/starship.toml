@@ -1,11 +1,14 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = true
+palette = "tailwind"
+
 format = """
-[╭](fg:current_line)\
 $os\
 $username\
 $directory\
 $git_branch\
 $git_status\
-$git_state\
+$git_metrics\
 $fill\
 $python\
 $conda\
@@ -14,104 +17,133 @@ $line_break\
 $character\
 """
 
-palette = 'dracula'
-add_newline = true
+[palettes.tailwind]
+fg = "#ffffff"
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
 
-[palettes.dracula]
-foreground = '#F8F8F2'
-background = '#282A36'
-current_line = '#44475A'
-primary = '#1E1F29'
-box = '#44475A'
-grey = '#6272A4'
-blue = '#1e66f5'
-cyan = '#8BE9FD'
-green = '#50FA7B'
-orange = '#FFB86C'
-mauve = '#8839ef'
-pink = '#FF79C6'
-purple = '#BD93F9'
-teal = '#179299'
-red = '#FF5555'
-yellow = '#df8e1d'
+[character]
+success_symbol = '[➜](bold green) '
+error_symbol = '[✗](bold red) '
+
+[username]
+show_always = true
+
+[conda]
+symbol = ""
+format = '[$symbol $environment](dimmed green) '
+ignore_base = false
+
+[fill]
+style = 'green'
+symbol = " "
+disabled = false
+
+[git_branch]
+format = '[on $symbol$branch(:$remote_branch)]($style) '
+style = "mauve"
+symbol = ' '
+
+[git_metrics]
+disabled = false
+format = '[+$added](green)|[-$deleted](maroon) '
+only_nonzero_diffs = true
+
+[git_status]
+ahead = '[⇡${count}](lavender) '
+behind = '😰 ${count}'
+conflicted = '🏳'
+deleted = '󰗨 ${count} '
+diverged = '⇕⇡${ahead_count}⇣${behind_count} '
+format = "[[($conflicted$untracked$modified$staged$renamed$deleted)](218)($ahead_behind$stashed)]($style)"
+modified = '[ ${count}](peach) '
+renamed = '👅'
+staged = '[+$count](green) '
+stashed = " ${count} "
+style = "red"
+untracked = "[ ${count}](sapphire) "
+up_to_date = ''
+
+[python]
+symbol = ""
+style = "blue"
+format = '[with( $symbol( $version)( $virtualenv) )]($style)'
+version_format = '${major}.${minor}'
 
 [os]
-format = '(fg:current_line)[](fg:red)[$symbol ](fg:primary bg:red)[](fg:red)'
 disabled = false
 
 [os.symbols]
-Alpine = ''
-Amazon = ''
-Android = ''
-Arch = ''
-CentOS = ''
-Debian = ''
-EndeavourOS = ''
-Fedora = ''
-FreeBSD = ''
-Garuda = ''
-Gentoo = ''
-Linux = ''
-Macos = ''
-Manjaro = ''
-Mariner = ''
-Mint = ''
-NetBSD = ''
-NixOS = ''
-OpenBSD = ''
-OpenCloudOS = ''
-openEuler = ''
-openSUSE = ''
-OracleLinux = '⊂⊃'
-Pop = ''
-Raspbian = ''
-Redhat = ''
-RedHatEnterprise = ''
-Solus = ''
-SUSE = ''
-Ubuntu = ''
-Unknown = ''
-Windows = ''
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
 
 [directory]
-format = '[─](fg:current_line)[](fg:pink)[󰷏 ](fg:primary bg:pink)[](fg:pink bg:box)[ $read_only$path](fg:foreground bg:box)[](fg:box)'
-home_symbol = " ~"
 truncation_length = 4
 read_only = '󱧵 '
 read_only_style = ''
 truncate_to_repo = false
-
-[git_branch]
-format = '[─](fg:current_line)[](fg:green)[$symbol](fg:primary bg:green)[](fg:green bg:box)[ $branch](fg:foreground bg:box)'
-symbol = ' '
-
-[git_status]
-format = '[( $all_status)](fg:red bg:box)[](fg:box)'
-
-[fill]
-symbol = '─'
-style = 'fg:current_line'
-
-[cmd_duration]
-min_time = 500
-format = '[─](fg:current_line)[](fg:purple)[ ](fg:primary bg:purple)[](fg:purple bg:box)[ $duration ](fg:foreground bg:box)[](fg:box)'
-
-[username]
-format = '[─](fg:current_line)[](fg:yellow)[ ](fg:primary bg:yellow)[](fg:yellow bg:box)[ $user](fg:foreground bg:box)[](fg:box)'
-show_always = true
-
-[conda]
-format = '[─](fg:current_line)[](fg:teal)[$symbol](fg:primary bg:teal)[](fg:teal bg:box)[ $environment](fg:foreground bg:box)[](fg:box)'
-ignore_base = false
-symbol = ' '
-
-[python]
-symbol = " "
-format = '[─](fg:current_line)[](fg:blue)[ $symbol ](fg:primary bg:blue)[](fg:blue bg:box)[ ${pyenv_prefix}(${version} )(\($virtualenv\) )](fg:foreground bg:box)[](fg:box)'
-
-[character]
-format = """
-[│](fg:current_line)
-[╰─$symbol](fg:current_line) """
-success_symbol = '[](fg:bold green)'
-error_symbol = '[](fg:bold red)'
+format = "[$read_only]($read_only_style)[$path]($style) "

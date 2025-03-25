@@ -6,6 +6,7 @@ config.font = wezterm.font 'Fira Code Nerd Font'
 config.font_size = 14
 config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = true
+config.default_prog = { "tmux" }
 
 config.keys = {
   {

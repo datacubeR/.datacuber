@@ -45,7 +45,7 @@
  transparent = #FF00000
 [bar/bar]
 monitor = ${env:MONITOR:}
-width = 100% 
+width = 100%
 height = 36
 ; dpi = 96
 
@@ -67,8 +67,8 @@ separator-foreground = ${colors.text}
 
 font-0 = FiraCode Nerd Font;3
 
-modules-left = xwindow i3 
-modules-center = date 
+modules-left = xwindow i3
+modules-center = date
 modules-right = pulseaudio xkeyboard memory cpu network battery
 
 cursor-click = pointer
@@ -107,7 +107,7 @@ type = internal/i3
 ; Default: false
 pin-workspaces = true
 
-; Show urgent workspaces regardless of whether the workspace is actually hidden 
+; Show urgent workspaces regardless of whether the workspace is actually hidden
 ; by pin-workspaces.
 ;
 ; Default: false
@@ -135,12 +135,12 @@ enable-scroll = false
 ; Default: true
 wrapping-scroll = false
 
-; Set the scroll cycle direction 
+; Set the scroll cycle direction
 ; Default: true
 reverse-scroll = false
 
 ; Use fuzzy (partial) matching for wc-icon.
-; Example: code;♚ will apply the icon to all workspaces 
+; Example: code;♚ will apply the icon to all workspaces
 ; containing 'code' in the name
 ; Changed in version 3.7.0: Selects longest string match instead of the first match.
 ; Default: false
@@ -158,7 +158,9 @@ ws-icon-4 = 5;%{F#eb092b} 5:Zotero
 ws-icon-5 = 6; 6:GIMP
 ws-icon-6 = 7;%{F#0f55fa}󰫪 7:Zoom
 ws-icon-7 = 8;%{F#cba6f7} 8:Zed
-ws-icon-default = %{F#eb6009}9:
+ws-icon-8 = 9;%{F#eb6009} 9:Files
+ws-icon-9 = 0;%{F#eb6009}10:
+# ws-icon-default = %{F#eb6009}9:
 ; NOTE: You cannot skip icons, e.g. to get a ws-icon-6
 ; you must also define a ws-icon-5.
 ; NOTE: Icon will be available as the %icon% token inside label-*
@@ -273,7 +275,8 @@ type = internal/memory
 interval = 2
 format-prefix = "  "
 format-prefix-foreground = ${colors.green}
-label = %percentage_used:2%%
+#label = %percentage_used:2%%
+label = %gb_used%
 label-foreground = ${colors.green}
 
 [module/cpu]
@@ -372,7 +375,7 @@ animation-discharging-framerate = 500
 ; Only applies if <animation-low> is used
 ; New in version 3.6.0
 animation-low-0 = !
-animation-low-1 = 
+animation-low-1 =
 animation-low-framerate = 200
 
 [settings]
