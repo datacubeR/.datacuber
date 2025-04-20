@@ -12,12 +12,13 @@
       // "shift shift": "file_finder::Toggle",
       "ctrl-t ctrl-t": "terminal_panel::ToggleFocus",
       "ctrl-e ctrl-e": "project_panel::ToggleFocus",
-      "ctrl-q ctrl-q": ["pane::CloseActiveItem", { "saveIntent": "saveAll" }],
+      "ctrl-q ctrl-q": ["pane::CloseActiveItem", { "save_intent": "save_all" }],
       "ctrl-s": ["workspace::SendKeystrokes", "ctrl-shift-p save enter escape"],
       "ctrl-k k": [
         "workspace::SendKeystrokes",
         "ctrl-k p ctrl-r t ctrl-c quarto space preview space ctrl-shift-v enter"
-      ]
+      ],
+      "ctrl-m m": "language_selector::Toggle"
     }
   },
   {
@@ -34,7 +35,9 @@
       "space e": "vim::NextSubwordEnd",
       "space g e": "vim::PreviousSubwordEnd",
       "g m": "vim::NextMethodStart",
-      "g M": "vim::PreviousMethodStart"
+      "g M": "vim::PreviousMethodStart",
+      "ctrl-d": "vim::LineDown",
+      "ctrl-y": "vim::LineUp"
     }
   },
   {
@@ -49,8 +52,8 @@
     "bindings": {
       // "shift shift": "file_finder::Toggle"
       "ctrl-e ctrl-e": "workspace::ToggleLeftDock",
-      "ctrl-p": "file_finder::Toggle",
-      "ctrl-k k": ["workspace::SendKeystrokes", "ctrl-w k ctrl-k right ctrl-e ctrl-e"]
+      "ctrl-p": "file_finder::Toggle"
+      // "ctrl-k k": ["workspace::SendKeystrokes", "ctrl-w k ctrl-k right ctrl-e ctrl-e"]
     }
   },
 
@@ -58,23 +61,24 @@
     "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
     "bindings": {
       "space w": "vim::Subword",
-      "space shift-w": ["vim::Subword", { "ignorePunctuation": true }]
+      "space shift-w": ["vim::Subword", { "ignore_punctuation": true }]
     }
   },
   {
     "context": "ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView",
     "bindings": {
-      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
-      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
     }
   },
   {
     "context": "vim_mode == normal || vim_mode == visual",
     "bindings": {
-      "s": ["vim::PushOperator", { "Sneak": {} }],
-      "S": ["vim::PushOperator", { "SneakBackward": {} }]
+      "s": ["vim::PushSneak", {}],
+      "S": ["vim::PushSneakBackward", {}],
+      "ctrl-e ctrl-e": "project_panel::ToggleFocus"
     }
   }
 ]

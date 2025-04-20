@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "icon_theme": "Material Icon Theme",
   "terminal": {
     "dock": "bottom",
     "font_family": "FiraCode Nerd Font",
@@ -32,7 +33,9 @@
     }
   },
   "file_types": {
-    "Markdown": ["*.qmd"]
+    "Markdown": ["*.qmd"],
+    // Detect files with no extension
+    "Shell Script": ["^\\w+$"]
   },
   "vim_mode": true,
   "vim": {
@@ -47,16 +50,24 @@
   "scrollbar": {
     "show": "never"
   },
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    }
+  },
   "lsp_highlight_debounce": 9999999,
   "buffer_font_size": 16,
   "soft_wrap": "preferred_line_length",
+  "show_wrap_guides": false,
   "preferred_line_length": 88,
+  "selection_highlight": false,
   "current_line_highlight": "gutter",
-  "show_wrap_guides": true,
   "unnecessary_code_fade": 0.3,
   "always_treat_brackets_as_autoclosed": true,
-  "coloring": "indent_aware",
-  "background_coloring": "indent_aware",
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "indent_aware"
+  },
   "vertical_scroll_margin": 15,
   "tabs": {
     // Show git status colors in the editor tabs.
@@ -70,7 +81,7 @@
   "show_signature_help_after_edits": true,
   "languages": {
     "Python": {
-      "show_inline_completions": true,
+      "show_edit_predictions": true,
       "language_servers": ["pyright", "ruff"],
       "format_on_save": "on",
       "formatter": [
@@ -91,8 +102,7 @@
       "soft_wrap": "editor_width"
     },
     "Shell Script": {
-      "preferred_line_length": 120,
-      "soft_wrap": "preferred_line_length"
+      "soft_wrap": "editor_width"
     }
   },
   "lsp": {
@@ -100,16 +110,8 @@
       "settings": {
         "analysis": {
           "autoSearchPaths": true,
-          "useLibraryCodeForTypes": false,
           "diagnosticMode": "workspace",
-          "typeCheckingMode": "off",
-          "reportUnusedImport": false,
-          "reportUnusedVariable": false,
-          "reportUnusedFunction": false,
-          "reportUnusedClass": false,
-          "reportOptionalMemberAccess": false,
-          "reportGeneralTypeIssues": false,
-          "strictParameterNoneValue": false
+          "typeCheckingMode": "strict"
         }
       }
     },
@@ -140,6 +142,6 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Catppuccin Mocha - No Italics"
+    "dark": "One Dark Pro"
   }
 }

@@ -21,7 +21,8 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always setxkbmap -layout us -variant intl
 
 ## Set the Wallpaper
-exec_always --no-startup-id feh --bg-fill ~/.wallpapers/wallpaper2.jpg
+# exec_always --no-startup-id feh --bg-fill ~/.wallpapers/levi.jpeg
+exec_always feh --bg-scale --randomize ~/.wallpapers/*
 
 
 ## Lockscreen
@@ -202,10 +203,12 @@ bindsym $mod+y workspace $ws2; exec --no-startup-id google-chrome --new-window -
 
 ## Screenshots Config
 
-bindsym --release $mod+r exec scrot '/home/datacuber/Pictures/Screenshots/%Y-%m-%d-%H.%M.%S.png' --select --freeze --line mode=edge -e 'notify-send "Screenshot Saved"'
-bindsym --release $mod+shift+r exec scrot '/home/datacuber/Pictures/Screenshots/%Y-%m-%d-%H.%M.%S_full.png' --focused --border -e 'notify-send "Screenshot Saved"'
-# Detect and configure new monitor on HDMI port
+bindsym $mod+r exec flameshot gui --clipboard --path ~/Pictures/Screenshots
 
+#bindsym --release $mod+r exec scrot '/home/datacuber/Pictures/Screenshots/%Y-%m-%d-%H.%M.%S.png' --select --freeze --line mode=edge -e 'notify-send "Screenshot Saved"'
+#bindsym --release $mod+shift+r exec scrot '/home/datacuber/Pictures/Screenshots/%Y-%m-%d-%H.%M.%S_full.png' --focused --border -e 'notify-send "Screenshot Saved"'
+
+# Detect and configure new monitor on HDMI port
 ## Monitors Config
 bindsym $mod+p exec --no-startup-id xrandr --output HDMI-0 --auto --right-of DP-4
 

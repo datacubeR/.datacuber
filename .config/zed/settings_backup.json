@@ -71,7 +71,7 @@
   "show_signature_help_after_edits": true,
   "languages": {
     "Python": {
-      "show_edit_predictions": true,
+      "show_inline_completions": true,
       "language_servers": ["pyright", "ruff"],
       "format_on_save": "on",
       "formatter": [
@@ -141,6 +141,6 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Catppuccin Macchiato - No Italics"
+    "dark": "Catppuccin Mocha - No Italics"
   }
 }

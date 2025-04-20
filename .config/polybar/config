@@ -54,6 +54,9 @@ foreground = ${colors.foreground}
 
 line-size = 2pt
 
+tray-position = center
+tray-padding = 20
+
 border-size = 4pt
 border-color = #00000000
 
@@ -68,8 +71,8 @@ separator-foreground = ${colors.text}
 font-0 = FiraCode Nerd Font;3
 
 modules-left = xwindow i3
-modules-center = date
-modules-right = pulseaudio xkeyboard memory cpu network battery
+modules-center = 
+modules-right = pulseaudio xkeyboard memory cpu network battery date
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -312,10 +315,10 @@ label-disconnected = "Offline"
 type = internal/date
 interval = 1
 
-date = %d-%m-%Y %H:%M:%S
-
+#date = %d-%m-%Y %H:%M:%S
+date =  %A, %b %d  %H:%M:%S
 label = %date%
-label-foreground = ${colors.pink}
+label-foreground = ${colors.peach}
 
 [module/battery]
 type = internal/battery
