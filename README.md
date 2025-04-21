@@ -26,7 +26,7 @@ sudo pacman -S i3
 
 ## GNU Stow
 
-Most of the configuration files should be recovered by cloning this repo and using GNU Stow to symlink my files to the correct location. 
+Most of the configuration files should be recovered by cloning this repo and using GNU Stow to symlink my files to the correct location.
 
 To install GNU Stow I need to run the following command:
 
@@ -40,7 +40,7 @@ sudo apt install stow
 sudo pacman -S stow
 ```
 
-After this I should clone this repo using: 
+After this I should clone this repo using:
 
 ```bash
 git clone git@github.com:datacubeR/.datacuber.git
@@ -53,7 +53,7 @@ stow .
 ```
 This should restore my configurations to the correct location using symlinks.
 
-## System Installations 
+## System Installations
 
 Despite I have spent enough time configuring my system, it is still likely that some dependencies are gonna need to be installed. This is a list of the software that I use and that I need to install:
 
@@ -74,7 +74,7 @@ Despite I have spent enough time configuring my system, it is still likely that 
 - `yazi`
 - `Fira Code Nerd Font`: As my Font and Icons for system and Terminal.
 
-Additionally I depend on specific Linux System Applications such as: 
+Additionally I depend on specific Linux System Applications such as:
 
 - `lxappearance`: For theme and icon configuration.
 - `pactl`: For audio control.
@@ -87,13 +87,13 @@ Additionally I depend on specific Linux System Applications such as:
 - `scrot`: For screenshots.
 
 
-Other applications that I can potentially use: `xbacklight`, `dunst`. 
+Other applications that I can potentially use: `xbacklight`, `dunst`.
 
 ## Applications
 
 Some of the Applications that I need to install because are part of my daily use are:
 
-* `miniconda`: Super important for my Python Enviroments. 
+* `miniconda`: Super important for my Python Enviroments.
 * `Google Chrome`
 * `GIMP`
 * `git`
@@ -117,8 +117,8 @@ To get access to my keyring autofill and password manager I need to modify my `g
 Exec=/usr/bin/google-chrome-stable --password-store=gnome-libsecret
 ```
 
-> Important: 
-> This may change for other OS, other options that could eventually work are `--password-store=basic` or `--password-store=gnome`.
+> Important:
+> This may change for other OS, other options that could eventually work are `--password-store=basic` or `--password-store=gnome`. Another option is:  `--incognito`. The thing is I can't remember where I modified this. So I need to check in case is needed.
 
 ### Shell Scripts
 
@@ -135,10 +135,10 @@ chmod +x <script_name>
 usermod -aG video ${USER}
 ```
 
-> Useful to find google-chrome.desktop file. 
+> Useful to find google-chrome.desktop file.
 ```bash
 sudo nano /usr/share/applications/google-chrome.desktop
-``` 
+```
 
 > Useful to set Zathura as default PDF viewer
 ```bash
