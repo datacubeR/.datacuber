@@ -46,6 +46,11 @@ chsh -s $(which zsh)
 
 > First command install zsh, the second one makes `ZSH` the default Shell.
 
+## Starship
+
+```bash
+curl -sS https://starship.rs/install.sh | sh
+```
 
 ## My System
 
