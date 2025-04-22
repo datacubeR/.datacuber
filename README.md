@@ -37,7 +37,14 @@ sudo pacman --sync flameshot
 
 > TODO: Eventually this run from the following file: 
 
+## ZSH
 
+```bash
+sudo pacman -S zsh
+chsh -s $(which zsh)
+```
+
+> First command install zsh, the second one makes `ZSH` the default Shell.
 
 
 ## My System
