@@ -1,8 +1,44 @@
 # Dotfiles
 
-These are the instructions to install my dotfiles on my system. This instructions are only to recreate my system in a new machine in case something goes wrong and I need a fresh start.
+These are the instructions to get my OS working.
+These instructions are only to recreate my system in a new machine in case something goes wrong and I need a fresh start.
 
-> This a works in progress and it can be changing as a build intructions. My idea is to make it usable for Debian based systems if I ever go back to Ubuntu or `Pop!_OS`, but I want to make it work on Arch based systems as well (such as `EndeavourOS`).
+> This Repo is mainly to reproduce my `EndevourOS`, but it also include legacy config files for Debian based `PopOS` if I ever go back.
+
+## Core Programs
+
+This programs are not included in the fresh install of `EndevourOS`. So, manual installation is needed.
+
+#### Google Chrome (Browser)
+
+```bash
+yay -S google-chrome
+```
+> Works out-of-the-box. No need to fix issues with autofill.
+
+In my case I also uninstalled Firefox:
+
+```bash
+sudo pacman -Rsn firefox
+```
+
+#### Wezterm (Terminal)
+
+```bash
+yay -S wezterm
+```
+> It is not needed to make it work, but it works best in company of `picom`. Install it properly from pacman.
+
+#### Flameshot: For Screenshots
+
+```bash
+sudo pacman --sync flameshot
+```
+
+> TODO: Eventually this run from the following file: 
+
+
+
 
 ## My System
 
