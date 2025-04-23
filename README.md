@@ -52,8 +52,9 @@ chsh -s $(which zsh)
 curl -sS https://starship.rs/install.sh | sh
 ```
 
-After installation, this line needs to be added to the end of `.zshrc` as per documentation. This is informative, I would expect to have it included in my `.zshrc` configuration already.
+After installation, these lines need to be added to the end of `.zshrc` as per documentation. This is informative, I would expect to have it included in my `.zshrc` configuration already.
 ```bash
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 eval "$(starship init zsh)"
 ```
 
