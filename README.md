@@ -57,6 +57,17 @@ After installation, these lines need to be added to the end of `.zshrc` as per d
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 eval "$(starship init zsh)"
 ```
+## Zoxyde
+
+```bash
+sudo pacman -S zoxyde
+```
+The following line needs to be added at the end of the zshrc file: 
+
+```bash
+eval "$(zoxide init zsh)"
+```
+
 
 ## My System
 
