@@ -1,7 +1,8 @@
-# Dotfiles
+## My System
 
-These are the Dotfiles needed to for my EndevourOS configuration.
-These instructions are only to recreate my system in a new machine in case something goes wrong and I need a fresh start. Use this defaults under your own risk.
+![](my_desktop.png)
+
+These are the Dotfiles needed to for my EndevourOS configuration. Use this defaults at your own risk.
 
 > Despite this Repo contains mainly the config for `EndevourOS`, it also includes legacy config files for Debian based `PopOS`, in case I ever go back.
 
@@ -19,12 +20,7 @@ For some reason , these mirrors do not have all the software I need as is. So I 
 ## This enables bluetooth permanently
 sudo systemctl enable bluetooth
 ```
-
-```bash
-sudo pacman -S blueman
-```
-
-> Note: Sometimes Artifacts with Pins will need to be paired using `bluetoothctl`.
+> Note: Artifacts with pin will need to be paired using `bluetoothctl`.
 
 > In order to do that use:
 
@@ -38,11 +34,15 @@ To search the Device ID and then:
 pair <device_id>
 ```
 
+> Then they can be used along with the blueman device manager.
+
 ## Github
 
-In order to setup my SSH in github I need to run the following command:
+In order to setup my Github Account and SSH I need to run the following commands:
 
 ```bash
+git config --global user.name "datacubeR"
+git config --global user.email "big_drummer2@hotmail.com"
 ssh-keygen -t ed25519 -C "big_drummer2@hotmail.com"
 ```
 
@@ -56,7 +56,7 @@ git clone git@github.com:datacubeR/.datacuber.git
 
 ## Core Programs
 
-To install all the Core software use:
+Go to the Repo and install all the Core software using:
 
 ```bash
 make install-core
@@ -64,203 +64,92 @@ make install-core
 
 This will install the following:
 
-* From Yay:
+### From Yay:
   * Google Chrome (Browser)
-  * Wezterm
-  * Picom (compositor needed for transparency)
+  * wezterm
+  * picom (compositor needed for transparency)
+  * VSCode
 
-* From Pacman:
+
+### From Pacman:
+  * ttf-firacode-nerd (Fira Code Nerd Font)
+  * blueman
   * gnome-keyring
-  * Flameshot
-  * ZSH
-  * Zoxyde
-  * Eza
+  * flameshot
+  * zsh
+  * zoxide
+  * eza
   * fzf
+  * bat
+  * thefuck
+
+### Using `curl`:
+  * Zed
+  * Starship
+  * uv
+
+### Using `git`:
+  * Zsh-syntax-hightlighting
 
 
+## Special Configuration commands
 
-
-
-## Individual Commands for every
+### Zsh
 ```bash
-yay -S google-chrome
-```
-> Works out-of-the-box. No need to fix issues with autofill like in `PopOS`.
-
-In my case I also uninstalled Firefox:
-
-```bash
-sudo pacman -Rsn firefox
-```
-
-## Zed
-
-To install Zed I use:
-
-```bash
-curl -f https://zed.dev/install.sh | sh
-```
-
-It is important to add Keyring for the Zed Session to persists. This is also useful for `VSCode`. I installed `gnome-keyring`.
-
-```bash
-sudo pacman -S gnome-keyring
-```
-
-#### Wezterm (Terminal)
-
-```bash
-yay -S wezterm
-```
-> It is not needed to make it work, but it works best in company of `picom`. Install it properly from pacman.
-
-#### Flameshot: For Screenshots
-
-```bash
-sudo pacman --sync flameshot
-```
-
-> TODO: Eventually this run from the following file:
-
-## ZSH
-
-```bash
-sudo pacman -S zsh
-
-## This needs to run to set zsh as the default Shell
+## This needs to set zsh as the default Shell
 chsh -s $(which zsh)
 ```
 
-> First command install zsh, the second one makes `ZSH` the default Shell.
-
-## Starship
+### Starship
 
 ```bash
-curl -sS https://starship.rs/install.sh | sh
-```
-
-After installation, these lines need to be added to the end of `.zshrc` as per documentation. This is informative, I would expect to have it included in my `.zshrc` configuration already.
-```bash
+## Changing the Directory for Configuration and starting with Zsh.
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 eval "$(starship init zsh)"
 ```
-## Zoxyde
+## Zoxide
 
 ```bash
-sudo pacman -S zoxyde
-```
-The following line needs to be added at the end of the zshrc file:
-
-```bash
+## Starting zoxide with Zsh
 eval "$(zoxide init zsh)"
 ```
 
+## eza
 
-## My System
-
-![](my_desktop.png)
-
-## i3 Window Manager
-
-For starters, no matter which OS I use I will use I3 Windows Manager, which can be installed with the following command:
-
+Setting style in Eza.
 ```bash
-## For Debian based systems
-sudo apt install i3
+echo 'alias ls="eza --group-directories-first --icons -x --hyperlink -a --show-symlinks --color=always"'
 ```
 
+## The Fuck
+
+Allowing using the Alias or alternative aliases for The Fuck.
 ```bash
-## For Arch based systems
-sudo pacman -S i3
+echo 'eval $(thefuck --alias)'
+# You can use whatever you want as an alias, like for Mondays:
+echo 'eval $(thefuck --alias FUCK)'
 ```
 
-> This should be my blueprint for my system, but I will be adding more configurations as I go.
+## fzf
 
-## GNU Stow
-
-Most of the configuration files should be recovered by cloning this repo and using GNU Stow to symlink my files to the correct location.
-
-To install GNU Stow I need to run the following command:
-
+Set up fzf key bindings and fuzzy completion
 ```bash
-## For Debian based systems
-sudo apt install stow
+echo 'source <(fzf --zsh)'
 ```
 
-```bash
-## For Arch based systems
-sudo pacman -S stow
-```
+## Other applications
 
-After this I should clone this repo using:
+Some other applications that I need to install because are part of my daily use are:
 
-```bash
-git clone git@github.com:datacubeR/.datacuber.git
-```
-Once the repo is cloned is just a matter of stowing my configurations with the following command:
-
-```bash
-cd .datacuber
-stow .
-```
-This should restore my configurations to the correct location using symlinks.
-
-## System Installations
-
-Despite I have spent enough time configuring my system, it is still likely that some dependencies are gonna need to be installed. This is a list of the software that I use and that I need to install:
-
-- `zsh`
-- Plugins:
-    - `oh-my-zsh` (not sure if it is needed)
-    - `zsh-autosuggestions`
-    - `zsh-syntax-highlighting`
-- `starship`
-- `polybar`
-- `rofi`
-- Plugins
-    - ![`rofi-themes-collection`](https://github.com/newmanls/rofi-themes-collection)
-    - ![`rofi-bluetooth`](https://github.com/nickclyde/rofi-bluetooth)
-    - ![`rofi-power-menu`](https://github.com/jluttine/rofi-power-menu)
-    - ![`rofi-wifi-menu`](https://github.com/ericmurphyxyz/rofi-wifi-menu)
-- `wezterm`
-- `yazi`
-- `Fira Code Nerd Font`: As my Font and Icons for system and Terminal.
-
-Additionally I depend on specific Linux System Applications such as:
-
-- `lxappearance`: For theme and icon configuration.
-- `pactl`: For audio control.
-- `playerctl`: For media control.
-- `bluetoothctl`: For bluetooth control.
-- `brightnessctl`: For brightness control.
-- `feh`: For setting wallpapers.
-- `picom`: For transparency and shadows (not ever installed in Debian Systems)
-- `xrandr`: For screen configuration.
-- `scrot`: For screenshots.
-
-
-Other applications that I can potentially use: `xbacklight`, `dunst`.
-
-## Applications
-
-Some of the Applications that I need to install because are part of my daily use are:
-
-* `miniconda`: Super important for my Python Enviroments.
-* `Google Chrome`
-* `GIMP`
-* `git`
 * `quarto`
-* `Spotify`
-* `VSCode`
-* `Zathura`
-* `Zed`
-* `Zoom`
+* `Zathura` or probably something more powerful.
 * `Zotero`
+* `Discord`
+* `Hugo` for migrating my blog.
 
 
-## Special Configs
-
-Some configs need to be done manually and it may change depending on the OS I'm using. Some of them are the following:
+## Special Commands (Legacy)
+Depending on the OS I'm installing I will need to add some additional configurations. I cannot remember where I got some of them, that is why I'm adding them here in case I need them again.
 
 ### Google Chrome
 To get access to my keyring autofill and password manager I need to modify my `google-chrome.desktop` file modifying the `Exec` line to look like this:

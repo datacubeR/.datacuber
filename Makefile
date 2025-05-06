@@ -1,4 +1,4 @@
 .PHONY: install-core
 
 install-core:
-	bash core.sh
+	bash src/core.sh
