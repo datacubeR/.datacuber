@@ -1,25 +1,110 @@
 # Dotfiles
 
-These are the instructions to get my OS working.
-These instructions are only to recreate my system in a new machine in case something goes wrong and I need a fresh start.
+These are the Dotfiles needed to for my EndevourOS configuration.
+These instructions are only to recreate my system in a new machine in case something goes wrong and I need a fresh start. Use this defaults under your own risk.
 
-> This Repo is mainly to reproduce my `EndevourOS`, but it also include legacy config files for Debian based `PopOS` if I ever go back.
+> Despite this Repo contains mainly the config for `EndevourOS`, it also includes legacy config files for Debian based `PopOS`, in case I ever go back.
+
+# Initial Setup
+
+This steps needs to be followed in sequential order:
+
+## Update EndevourOS Mirrors
+
+For some reason , these mirrors do not have all the software I need as is. So I need to update them. It is important to add: United States, Brazil, Europe and Chile.
+
+## Activate Bluetooth Daemon and GUI (Blueman)
+
+```bash
+## This enables bluetooth permanently
+sudo systemctl enable bluetooth
+```
+
+```bash
+sudo pacman -S blueman
+```
+
+> Note: Sometimes Artifacts with Pins will need to be paired using `bluetoothctl`.
+
+> In order to do that use:
+
+```bash
+scan on
+```
+
+To search the Device ID and then:
+
+```bash
+pair <device_id>
+```
+
+## Github
+
+In order to setup my SSH in github I need to run the following command:
+
+```bash
+ssh-keygen -t ed25519 -C "big_drummer2@hotmail.com"
+```
+
+With this command I need to copy my resulting `.pub` file into SSH settings in Github.
+
+## Download Configuration Repo
+
+```bash
+git clone git@github.com:datacubeR/.datacuber.git
+```
 
 ## Core Programs
 
-This programs are not included in the fresh install of `EndevourOS`. So, manual installation is needed.
+To install all the Core software use:
 
-#### Google Chrome (Browser)
+```bash
+make install-core
+```
 
+This will install the following:
+
+* From Yay:
+  * Google Chrome (Browser)
+  * Wezterm
+  * Picom (compositor needed for transparency)
+
+* From Pacman:
+  * gnome-keyring
+  * Flameshot
+  * ZSH
+  * Zoxyde
+  * Eza
+  * fzf
+
+
+
+
+
+## Individual Commands for every
 ```bash
 yay -S google-chrome
 ```
-> Works out-of-the-box. No need to fix issues with autofill.
+> Works out-of-the-box. No need to fix issues with autofill like in `PopOS`.
 
 In my case I also uninstalled Firefox:
 
 ```bash
 sudo pacman -Rsn firefox
+```
+
+## Zed
+
+To install Zed I use:
+
+```bash
+curl -f https://zed.dev/install.sh | sh
+```
+
+It is important to add Keyring for the Zed Session to persists. This is also useful for `VSCode`. I installed `gnome-keyring`.
+
+```bash
+sudo pacman -S gnome-keyring
 ```
 
 #### Wezterm (Terminal)
@@ -35,12 +120,14 @@ yay -S wezterm
 sudo pacman --sync flameshot
 ```
 
-> TODO: Eventually this run from the following file: 
+> TODO: Eventually this run from the following file:
 
 ## ZSH
 
 ```bash
 sudo pacman -S zsh
+
+## This needs to run to set zsh as the default Shell
 chsh -s $(which zsh)
 ```
 
@@ -62,7 +149,7 @@ eval "$(starship init zsh)"
 ```bash
 sudo pacman -S zoxyde
 ```
-The following line needs to be added at the end of the zshrc file: 
+The following line needs to be added at the end of the zshrc file:
 
 ```bash
 eval "$(zoxide init zsh)"
