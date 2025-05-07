@@ -1,6 +1,6 @@
 ## My System
 
-![](my_desktop.png)
+![](desktop.png)
 
 These are the Dotfiles needed to for my EndevourOS configuration. Use this defaults at your own risk.
 
@@ -9,6 +9,26 @@ These are the Dotfiles needed to for my EndevourOS configuration. Use this defau
 # Initial Setup
 
 This steps needs to be followed in sequential order:
+
+## Set Mouse Theme
+In order to set Mouse Theme I need to go to `~/.Xresources` file and modify the following line:
+
+```bash
+## These could take any option available in the GTK Settings.
+## But changing here is the only way to make it available system wide.
+Xcursor.theme: Qogir
+```
+
+## Add Text Input to PowerMenu
+
+In the `~/.config/rofi/powermenu.rasi` file, comment out this:
+
+```css
+/*removes the text input line*/
+mainbox {
+  children: [listview];
+}
+```
 
 ## Update EndevourOS Mirrors
 
@@ -22,7 +42,7 @@ sudo systemctl enable bluetooth
 ```
 > Note: Artifacts with pin will need to be paired using `bluetoothctl`.
 
-> In order to do that use:
+In order to do that use:
 
 ```bash
 scan on
@@ -69,9 +89,11 @@ This will install the following:
   * wezterm
   * picom (compositor needed for transparency)
   * VSCode
+  * xkblayout-state (To show the current layout)
 
 
 ### From Pacman:
+  * xsel
   * ttf-firacode-nerd (Fira Code Nerd Font)
   * blueman
   * gnome-keyring
@@ -82,6 +104,10 @@ This will install the following:
   * fzf
   * bat
   * thefuck
+  * tmux
+  * Spotify
+  * Zoom
+  * tmux
 
 ### Using `curl`:
   * Zed
@@ -90,7 +116,33 @@ This will install the following:
 
 ### Using `git`:
   * Zsh-syntax-hightlighting
+  * tpm
 
+
+## Syncing Configuration with Stow
+
+First of all install GNU Stow:
+
+```bash
+sudo pacman -S stow
+```
+
+Then go to the `~/.datacuber` folder and run:
+
+```bash
+stow .
+```
+
+This should create symlinks for the following configs:
+
+* .wallpapers
+* .zshrc
+* .wezterm.lua
+* .tmux.conf
+* .config
+  * picom
+  * Starship
+  * i3
 
 ## Special Configuration commands
 
