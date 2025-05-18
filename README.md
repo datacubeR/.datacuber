@@ -144,7 +144,6 @@ This should create symlinks for the following configs:
 
 * .wallpapers
 * .zshrc
-* .iptyhon
 * .wezterm.lua (we'll see)
 * .tmux.conf
 * .config
