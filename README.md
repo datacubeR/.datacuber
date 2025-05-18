@@ -221,9 +221,25 @@ ipython  profile create
 Then I need to add the following lines in the `~/.ipython/profile_default/ipython_config.py` file:
 
 ```bash
+# Configuration file for ipython.
+
+from IPython.core.ultratb import VerboseTB
+
+c = get_config()  # noqa
 c.InteractiveShellApp.exec_lines = []
 c.InteractiveShellApp.exec_lines.append("%load_ext autoreload")
 c.InteractiveShellApp.exec_lines.append("%autoreload 2")
+
+c.TerminalInteractiveShell.confirm_exit = False
+
+# turn off that banner w/ version info when first open REPL (i.e. in nvim)
+c.TerminalIPythonApp.display_banner = False
+
+# this makes traceback highlights legible:
+
+VerboseTB.tb_highlight = (
+    "bg:ansiyellow ansiblack"  # I like the yellow, just want black text
+)
 ```
 
 ## Other applications

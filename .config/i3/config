@@ -280,11 +280,13 @@ for_window [class="urxvt"] border pixel 1
 
 bindsym $mod+t exec kitty -e tmux
 
+## Kitty opens in Main Monitor always
 exec --no-startup-id kitty
 workspace $ws10 output HDMI-0
 for_window [class="kitty"] move to workspace $ws10
 
 for_window [class="Google-chrome"] move to workspace $ws2
+for_window [class="Google-chrome"] focus
 
 # for_window [class="kitty"] resize set 1900 1030
 # for_window [class="kitty"] move scratchpad
@@ -305,6 +307,8 @@ for_window [class="dev.zed.Zed"] focus
 workspace $ws1 output DP-4
 for_window [class="Thunar"] move to workspace $ws1
 for_window [class="Thunar"] focus
+
+for_window [class="matplotlib"] move to workspace $ws9
 
 
 ######################################

@@ -22,6 +22,18 @@ bindkey '\eOF'  end-of-line
 bindkey "^[[3~" delete-char
 
 HISTFILE=~/.zsh_history
+
+# Number of commands to save in memory (this session)
 HISTSIZE=10000
+
+# Number of commands to save in the history file
 SAVEHIST=10000
-setopt appendhistory
+
+# Useful options to improve history handling
+setopt APPEND_HISTORY             # Append history instead of overwriting
+setopt SHARE_HISTORY              # Share history between terminals
+setopt INC_APPEND_HISTORY         # Add commands to history immediately
+setopt HIST_IGNORE_DUPS           # Ignore duplicate commands
+setopt HIST_IGNORE_ALL_DUPS       # Delete old recorded entry if new one is a duplicate
+setopt HIST_REDUCE_BLANKS         # Remove superfluous blanks before recording entry
+setopt HIST_VERIFY                # Don't execute immediately on history expansion
