@@ -11,6 +11,7 @@ These are the Dotfiles needed to for my EndevourOS configuration. Use this defau
 This steps needs to be followed in sequential order:
 
 ## Set Mouse Theme
+
 In order to set Mouse Theme I need to go to `~/.Xresources` file and modify the following line:
 
 ```bash
@@ -40,6 +41,7 @@ For some reason , these mirrors do not have all the software I need as is. So I 
 ## This enables bluetooth permanently
 sudo systemctl enable bluetooth
 ```
+
 > Note: Artifacts with pin will need to be paired using `bluetoothctl`.
 
 In order to do that use:
@@ -84,40 +86,45 @@ make install-core
 
 This will install the following:
 
-### From Yay:
-  * Google Chrome (Browser)
-  * wezterm
-  * picom (compositor needed for transparency)
-  * VSCode
-  * xkblayout-state (To show the current layout)
+### From Yay
 
+* Google Chrome (Browser)
+* wezterm (we'll see)
+* picom (compositor needed for transparency)
+* VSCode
+* xkblayout-state (To show the current layout)
 
-### From Pacman:
-  * xsel
-  * ttf-firacode-nerd (Fira Code Nerd Font)
-  * blueman
-  * gnome-keyring
-  * flameshot
-  * zsh
-  * zoxide
-  * eza
-  * fzf
-  * bat
-  * thefuck
-  * tmux
-  * Spotify
-  * Zoom
-  * tmux
+### From Pacman
 
-### Using `curl`:
-  * Zed
-  * Starship
-  * uv
+* xsel
+* ttf-firacode-nerd (Fira Code Nerd Font)
+* blueman
+* gnome-keyring
+* flameshot
+* zsh
+* zoxide
+* eza
+* fzf
+* bat
+* thefuck
+* tmux
+* Spotify
+* Zoom
+* tmux
+* Neovim
+* kitty
 
-### Using `git`:
-  * Zsh-syntax-hightlighting
-  * tpm
+### Using `curl`
 
+* Zed
+* Starship
+* uv
+
+### Using `git`
+
+* Zsh-syntax-hightlighting
+* Zsh-autosuggestions
+* tpm
 
 ## Syncing Configuration with Stow
 
@@ -137,19 +144,30 @@ This should create symlinks for the following configs:
 
 * .wallpapers
 * .zshrc
-* .wezterm.lua
+* .iptyhon
+* .wezterm.lua (we'll see)
 * .tmux.conf
 * .config
+  * kitty
   * picom
   * Starship
   * i3
+  * Neovim (TODO: Probably I will have a dedicated documentation for this!)
 
 ## Special Configuration commands
 
 ### Zsh
+
 ```bash
 ## This needs to set zsh as the default Shell
 chsh -s $(which zsh)
+```
+
+### Zsh-Syntax-highlighting and Zsh-Autosuggestions
+
+```bash
+source /home/datacuber/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ```
 
 ### Starship
@@ -159,6 +177,7 @@ chsh -s $(which zsh)
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 eval "$(starship init zsh)"
 ```
+
 ## Zoxide
 
 ```bash
@@ -169,6 +188,7 @@ eval "$(zoxide init zsh)"
 ## eza
 
 Setting style in Eza.
+
 ```bash
 echo 'alias ls="eza --group-directories-first --icons -x --hyperlink -a --show-symlinks --color=always"'
 ```
@@ -176,6 +196,7 @@ echo 'alias ls="eza --group-directories-first --icons -x --hyperlink -a --show-s
 ## The Fuck
 
 Allowing using the Alias or alternative aliases for The Fuck.
+
 ```bash
 echo 'eval $(thefuck --alias)'
 # You can use whatever you want as an alias, like for Mondays:
@@ -185,8 +206,25 @@ echo 'eval $(thefuck --alias FUCK)'
 ## fzf
 
 Set up fzf key bindings and fuzzy completion
+
 ```bash
 echo 'source <(fzf --zsh)'
+```
+
+## ipython
+
+To configure ipython to use it properly in Neovim I need to run the following commands:
+
+```bash
+ipython  profile create
+```
+
+Then I need to add the following lines in the `~/.ipython/profile_default/ipython_config.py` file:
+
+```bash
+c.InteractiveShellApp.exec_lines = []
+c.InteractiveShellApp.exec_lines.append("%load_ext autoreload")
+c.InteractiveShellApp.exec_lines.append("%autoreload 2")
 ```
 
 ## Other applications
@@ -199,11 +237,12 @@ Some other applications that I need to install because are part of my daily use 
 * `Discord`
 * `Hugo` for migrating my blog.
 
-
 ## Special Commands (Legacy)
+
 Depending on the OS I'm installing I will need to add some additional configurations. I cannot remember where I got some of them, that is why I'm adding them here in case I need them again.
 
 ### Google Chrome
+
 To get access to my keyring autofill and password manager I need to modify my `google-chrome.desktop` file modifying the `Exec` line to look like this:
 
 ```bash
@@ -221,24 +260,28 @@ All the Shell Scripts I need to run needs to have execution permissions. To give
 chmod +x <script_name>
 ```
 
-## Useful commands that I don't want to forget.
+## Useful commands that I don't want to forget
 
 > Can't remember why I used it
+
 ```bash
 usermod -aG video ${USER}
 ```
 
 > Useful to find google-chrome.desktop file.
+
 ```bash
 sudo nano /usr/share/applications/google-chrome.desktop
 ```
 
 > Useful to set Zathura as default PDF viewer
+
 ```bash
 xdg-mime default org.pwmt.zathura.desktop application/pdf
 ```
 
 > Useful to find the class of a window needed for i3 configuration
+
 ```bash
 xprop | grep WM_CLASS
 ```

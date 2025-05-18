@@ -58,7 +58,7 @@ bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
+bindsym $mod+g workspace number $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -116,6 +116,9 @@ bindsym $mod+Shift+l move right
 # keybindings for different actions: #
 ######################################
 
+## Monitors Config
+bindsym $mod+p exec --no-startup-id xrandr --output HDMI-0 --auto --right-of DP-4
+
 # kill focused window
 bindsym $mod+q kill
 
@@ -155,13 +158,21 @@ bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/scripts/volume_brightnes
 bindsym XF86AudioMicMute exec amixer sset Capture toggle
 
 # audio control
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
-# Above line will also work for pausing
-bindsym XF86AudioNext exec --no-startup-id playerctl next
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+# bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+# # Above line will also work for pausing
+# bindsym XF86AudioNext exec --no-startup-id playerctl next
+# bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+## playerctl for Media playing (Spotify)
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause --player spotify
+bindsym XF86AudioNext exec --no-startup-id playerctl next --player spotify
+bindsym XF86AudioPrev exec --no-startup-idplayerctl previous --player spotify
+
+## For the rest
+bindsym $mod+a exec --no-startup-id playerctl play-pause
 
 # Redirect sound to headphones
-bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
+bindsym $mod+z exec --no-startup-id /usr/local/bin/switch-audio-port
 
 ## App shortcuts
 bindsym $mod+n exec --no-startup-id /usr/bin/thunar
@@ -234,6 +245,7 @@ exec --no-startup-id xset s 480 dpms 600 600 600
 exec --no-startup-id /usr/bin/dunst
 
 
+
 ###############
 # system tray #
 ###############
@@ -256,15 +268,29 @@ for_window [class="urxvt"] border pixel 1
 ##################
 #  Applications  #
 ##################
+
 ## Terminal Scratchpad (Wezterm)
 ## Scratchpad Config
-exec --no-startup-id wezterm start --class org.wezfurlong.wezterm
-for_window [class="org.wezfurlong.wezterm"] floating enable
-for_window [class="org.wezfurlong.wezterm"] resize set 1800 900
-for_window [class="org.wezfurlong.wezterm"] move scratchpad
-for_window [class="org.wezfurlong.wezterm"] move container to output HDMI-0
 
-bindsym $mod+g [class="org.wezfurlong.wezterm"] scratchpad show; move position center; move container to output HDMI-0; focus output HDMI-0
+# exec --no-startup-id wezterm start --class org.wezfurlong.wezterm
+# for_window [class="org.wezfurlong.wezterm"] floating enable
+# for_window [class="org.wezfurlong.wezterm"] resize set 1800 900
+# for_window [class="org.wezfurlong.wezterm"] move scratchpad
+# for_window [class="org.wezfurlong.wezterm"] move container to output HDMI-0
+
+bindsym $mod+t exec kitty -e tmux
+
+exec --no-startup-id kitty
+workspace $ws10 output HDMI-0
+for_window [class="kitty"] move to workspace $ws10
+
+for_window [class="Google-chrome"] move to workspace $ws2
+
+# for_window [class="kitty"] resize set 1900 1030
+# for_window [class="kitty"] move scratchpad
+# for_window [class="kitty"] move container to output HDMI-0
+# bindsym $mod+g [class="kitty"] scratchpad show; move position center; move container to output HDMI-0; focus output HDMI-0
+
 # bindsym $mod+Shift+minus move scratchpad
 # bindsym $mod+minus scratchpad show
 #
@@ -272,7 +298,7 @@ bindsym $mod+g [class="org.wezfurlong.wezterm"] scratchpad show; move position c
 workspace $ws3 output DP-4
 for_window [class="Spotify"] move to workspace $ws3
 
-workspace $ws1 output HDMI-0
+workspace $ws8 output HDMI-0
 for_window [class="dev.zed.Zed"] move to workspace $ws8
 for_window [class="dev.zed.Zed"] focus
 
@@ -361,7 +387,7 @@ bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun \
 		-config ~/.config/rofi/rofidmenu.rasi
 
 
-bindsym $mod+t exec --no-startup-id rofi -show window \
+bindsym $mod+Tab exec --no-startup-id rofi -show window \
 		-config ~/.config/rofi/rofidmenu.rasi
 
 

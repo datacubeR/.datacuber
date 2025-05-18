@@ -1,4 +1,3 @@
-
 echo "Uninstalling Firefox..."
 sudo pacman -Rsn firefox
 
@@ -7,7 +6,7 @@ yay -S google-chrome wezterm picom visual-studio-code-bin xkblayout-state
 
 echo "Installing from Pacman..."
 
-sudo pacman -S xsel ttf-firacode-nerd blueman gnome-keyring flameshot zsh zoxide eza fzf bat thefuck spotify zoom tmux
+sudo pacman -S xsel ttf-firacode-nerd blueman gnome-keyring flameshot zsh zoxide eza fzf bat thefuck spotify zoom tmux neovim kitty
 
 echo "Installing Zed..."
 curl -f https://zed.dev/install.sh | sh
@@ -20,6 +19,9 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 echo "Installing Zsh-Syntax-Highlighting..."
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+
+echo "Installing Zsh-Autosuggestions..."
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 
 echo "Installing TPM for tmux..."
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
